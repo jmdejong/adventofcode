@@ -1,0 +1,42 @@
+Register A: 729
+Register B: 0
+Register C: 0
+
+0,1: A = A >> 2
+5,4: print(A % 8)
+3,0: jsz 0
+
+a = 729
+while a > 0:
+	a = a // 2
+	print(a % 8)
+
+=====================
+
+Register A: 61156655
+Register B: 0
+Register C: 0
+
+2,4: B = A % 8
+1,5: B = B ^ 5
+7,5: C = A >> B
+4,3: B = B ^ C
+1,6: B = B ^ 6
+0,3: A = A >> 3
+5,5: print(B % 8)
+3,0: jsz 0
+
+
+a = 61156655
+r = []
+while a > 0:
+	b = a % 8
+	b = b ^ 5
+	c = a >> b
+	b = b ^ c
+	b = b ^ 6
+	# d = (a % 8) ^ 5
+	# d ^ 6 ^ (a >> d)
+	r.append(b%8)
+	a = a // 8
+print(",".join(str(num) for num in r))
